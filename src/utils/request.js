@@ -29,7 +29,7 @@ request.interceptors.request.use(config => {
 request.interceptors.response.use(
     response => {
         let res = response.data;
-        if(res === "token illegal")
+        if(res === "token illegal" || res === "token is null")
             router.push("/login")
         // 如果是返回的文件
         if (response.config.responseType === 'blob') {

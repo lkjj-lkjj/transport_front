@@ -47,21 +47,21 @@
         <p>Transporter</p>
       </div>
       <div class="serve">
-        <div class="item" @click="toReceiveOrder">
+        <div class="item" @click="toReceiveOrder" v-show=!admin>
           <div class="licon"><el-icon :size="30"><House/></el-icon></div>
           <div class="con">Orders</div>
           <div class="ricon">
             <span class="iconfont icon-Dashboard"></span>
           </div>
         </div>
-        <div class="item" @click="toMyInTrans">
+        <div class="item" @click="toMyInTrans" v-show=!admin>
           <div class="licon"><el-icon :size="30"><Menu/></el-icon></div>
           <div class="con">In transit</div>
           <div class="ricon">
             <span class="iconfont icon-Dashboard"></span>
           </div>
         </div>
-        <div class="item" @click="toTransHistory">
+        <div class="item" @click="toTransHistory" v-show=!admin>
           <div class="licon"><el-icon :size="30"><Document/></el-icon></div>
           <div class="con">Trans History</div>
           <div class="ricon">
@@ -103,7 +103,7 @@ export default {
   data(){
     return{
       name: sessionStorage.getItem("username"),
-      admin: sessionStorage.getItem("username") === "lkj"
+      admin: sessionStorage.getItem("auth") === "0"
     }
   }
 }
