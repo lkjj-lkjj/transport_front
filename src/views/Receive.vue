@@ -26,20 +26,20 @@ export default {
     }
   },
   mounted() {
-    request.get("/secure/receive").then(res=>{
+    request.get("/transporter-service/secure/receive").then(res=>{
       this.tableData = res.data
     })
   },
   methods:{
     handleClick(row){
       row["transporterid"] = sessionStorage.getItem("id")
-      request.post("/secure/receiveorder", row).then(res=>{
+      request.post("/transporter-service/secure/receiveorder", row).then(res=>{
         if(res.code === "200"){
           this.$message({
             type: "success",
             message: "Success"
           })
-          request.get("/secure/receive").then(res=>{
+          request.get("/transporter-service/secure/receive").then(res=>{
             this.tableData = res.data
           })
         }else{

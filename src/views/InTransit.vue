@@ -22,7 +22,7 @@ export default {
     }
   },
   mounted() {
-    request.get("/secure/intrans/"+sessionStorage.getItem('id')).then(res=>{
+    request.get("/user-service/secure/intrans/"+sessionStorage.getItem('id')).then(res=>{
       this.tableData = res.data
     })
   }

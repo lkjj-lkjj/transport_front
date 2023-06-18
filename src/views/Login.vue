@@ -35,6 +35,9 @@
           </div>
         </div>
         <div class="primary-btn" @click="login" style="font-weight: bold">Sign In</div>
+        <br>
+        <a href="https://gitee.com/oauth/authorize?client_id=8e70556e33da0ea034e85276607e26b93c5fc6dd893061c9d92e44800051cc51&redirect_uri=http://localhost:8080/callback&response_type=code&state=1">
+          <h3 style="font-weight: bold">Gitee login</h3></a>
       </form>
     </div>
     <div :class="['switch', { login: isLogin }]">
@@ -106,7 +109,7 @@ export default {
         })
       }
       else{
-        request.post("/login", {username: this.form.email, password: this.form.password}).then(res=>{
+        request.post("/auth-service/login", {username: this.form.email, password: this.form.password}).then(res=>{
           if(res.code === "200"){
             sessionStorage.setItem("JWT", res.data.token)
             sessionStorage.setItem("auth", res.data.auth)
@@ -116,10 +119,10 @@ export default {
               message: "Success"
             })
             sessionStorage.setItem("username",this.form.email)
-            if(sessionStorage.getItem("auth") === "0"){
-              this.$router.push("/createorder")
-            }else{
+            if(sessionStorage.getItem("auth") === "1"){
               this.$router.push("/receive")
+            }else{
+              this.$router.push("/createorder")
             }
           }
           if(res.code === "500"){
@@ -146,7 +149,7 @@ export default {
         })
       }
       else{
-        request.post("/register", {username: this.registerData.name, password: this.registerData.password}).then(res=>{
+        request.post("/auth-service/register", {username: this.registerData.name, password: this.registerData.password}).then(res=>{
           if(res.code === "500"){
             this.$message({
               type: "error",

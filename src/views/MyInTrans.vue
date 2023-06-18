@@ -28,19 +28,19 @@ export default {
     }
   },
   mounted() {
-    request.get("/secure/myintrans/"+sessionStorage.getItem('id')).then(res=>{
+    request.get("/transporter-service/secure/myintrans/"+sessionStorage.getItem('id')).then(res=>{
       this.tableData = res.data
     })
   },
   methods:{
     handleClick(row){
-      request.post("/secure/complete", row).then(res=>{
+      request.post("/transporter-service/secure/complete", row).then(res=>{
         if(res.code === "200"){
           this.$message({
             type: "success",
             message: "Success"
           })
-          request.get("/secure/myintrans/"+sessionStorage.getItem('id')).then(res=>{
+          request.get("/transporter-service/secure/myintrans/"+sessionStorage.getItem('id')).then(res=>{
             this.tableData = res.data
           })
         }else{

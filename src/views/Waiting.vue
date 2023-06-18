@@ -31,7 +31,7 @@ export default {
     }
   },
   mounted() {
-    request.get("/secure/waiting/"+sessionStorage.getItem('id')).then(res=>{
+    request.get("/user-service/secure/waiting/"+sessionStorage.getItem('id')).then(res=>{
       this.tableData = res.data
     })
   },
@@ -47,13 +47,13 @@ export default {
       }
     },
     handleClick(row){
-      request.post("/secure/revoke",row).then(res=>{
+      request.post("/user-service/secure/revoke",row).then(res=>{
         if(res.code === "200"){
           this.$message({
             type: "success",
             message: "Success"
           })
-          request.get("/secure/waiting/"+sessionStorage.getItem('id')).then(res=>{
+          request.get("/user-service/secure/waiting/"+sessionStorage.getItem('id')).then(res=>{
             this.tableData = res.data
           })
         }

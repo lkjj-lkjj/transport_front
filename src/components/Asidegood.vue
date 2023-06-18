@@ -17,25 +17,25 @@
         <p>Customer</p>
       </div>
       <div class="menu">
-        <div class="item" @click="toCreateOrder" v-show=admin>
+        <div class="item" @click="toCreateOrder" v-show=!admin>
           <div class="light"></div>
           <div class="licon"><el-icon :size="30"><User/></el-icon></div>
           <div class="con">Create order</div>
           <div class="ricon"><el-icon :size="20"><Star/></el-icon></div>
         </div>
-        <div class="item" @click="toWaiting" v-show=admin>
+        <div class="item" @click="toWaiting" v-show=!admin>
           <div class="light"></div>
           <div class="licon"><el-icon :size="30"><Notebook/></el-icon></div>
           <div class="con">Waiting</div>
           <div class="ricon"><el-icon :size="20"><Pointer/></el-icon></div>
         </div>
-        <div class="item" @click="toInTransit" v-show=admin>
+        <div class="item" @click="toInTransit" v-show=!admin>
           <div class="light"></div>
           <div class="licon"><el-icon :size="30"><Message/></el-icon></div>
           <div class="con">In transit</div>
           <div class="ricon"><el-icon :size="20"><View/></el-icon></div>
         </div>
-        <div class="item" @click="toMyHistory" v-show=admin>
+        <div class="item" @click="toMyHistory" v-show=!admin>
           <div class="light"></div>
           <div class="licon"><el-icon :size="30"><Files/></el-icon></div>
           <div class="con">My history</div>
@@ -47,21 +47,21 @@
         <p>Transporter</p>
       </div>
       <div class="serve">
-        <div class="item" @click="toReceiveOrder" v-show=!admin>
+        <div class="item" @click="toReceiveOrder" v-show=admin>
           <div class="licon"><el-icon :size="30"><House/></el-icon></div>
           <div class="con">Orders</div>
           <div class="ricon">
             <span class="iconfont icon-Dashboard"></span>
           </div>
         </div>
-        <div class="item" @click="toMyInTrans" v-show=!admin>
+        <div class="item" @click="toMyInTrans" v-show=admin>
           <div class="licon"><el-icon :size="30"><Menu/></el-icon></div>
           <div class="con">In transit</div>
           <div class="ricon">
             <span class="iconfont icon-Dashboard"></span>
           </div>
         </div>
-        <div class="item" @click="toTransHistory" v-show=!admin>
+        <div class="item" @click="toTransHistory" v-show=admin>
           <div class="licon"><el-icon :size="30"><Document/></el-icon></div>
           <div class="con">Trans History</div>
           <div class="ricon">
@@ -103,7 +103,7 @@ export default {
   data(){
     return{
       name: sessionStorage.getItem("username"),
-      admin: sessionStorage.getItem("auth") === "0"
+      admin: sessionStorage.getItem("auth") === "1"
     }
   }
 }

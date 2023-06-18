@@ -24,7 +24,7 @@ export default {
     }
   },
   mounted() {
-    request.get("/secure/mytranshistory/"+sessionStorage.getItem("id")).then(res=>{
+    request.get("/transporter-service/secure/mytranshistory/"+sessionStorage.getItem("id")).then(res=>{
       this.tableData = res.data
     })
   }

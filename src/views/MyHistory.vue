@@ -24,7 +24,7 @@ export default {
     }
   },
   mounted() {
-    request.get("/secure/myhistory/"+sessionStorage.getItem('id')).then(res=>{
+    request.get("/user-service/secure/myhistory/"+sessionStorage.getItem('id')).then(res=>{
       this.tableData = res.data
     })
   }

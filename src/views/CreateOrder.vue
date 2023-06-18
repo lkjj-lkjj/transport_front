@@ -77,7 +77,7 @@ export default {
   methods:{
     onSubmit(){
       this.form.createtime = this.form.date1 + " " +this.form.date2
-      request.post("/secure/insert", this.form).then(res=>{
+      request.post("/user-service/secure/insert", this.form).then(res=>{
         if(res.code === "200"){
           this.$message({
             type: "success",
@@ -93,6 +93,13 @@ export default {
     },
     clear(){
       this.form = {}
+    }
+  },
+  mounted() {
+    if(sessionStorage.getItem("id") === null){
+      sessionStorage.setItem("id", 9)
+      sessionStorage.setItem("username", "lkjjjj")
+      sessionStorage.setItem("auth",0)
     }
   }
 }
